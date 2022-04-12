@@ -1,2 +1,3 @@
 # Deep-Learning-with-R
-Practical exercices in deep learning.
+Practical exercises in deep learning.
+
