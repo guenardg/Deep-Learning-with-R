@@ -1,0 +1,292 @@
+---
+title: 'Exercises: Deep Learning with R - Chapter 2'
+author: "Guillaume Guénard"
+date: '2022-04-12'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Data preparation
+
+## Packages, directories, and sources
+
+The following code loads the necessary `R` packages, resources directories, and
+sources:
+
+```{r}
+library(keras)
+library(magrittr)
+library(caret)
+data_dir <- "../Data"
+aux_dir <- "../Auxiliary"
+aux_dir %>% file.path("Auxiliary.R") %>% source
+```
+
+## Loading the MNIST data set example
+
+This code is for loading the MNIST handwritten digits example data set. To avoid
+having to download the data set each time the document is compiled, I have put
+the code to download and arrange the data and saves them into an
+`if(FALSE){...}` block. The pre-processed data are then simply loaded whenever
+the document is compiled.
+
+```{r, fig.width=7, fig.height=5, cache=TRUE}
+if(FALSE){
+  mnist <- dataset_mnist()
+  train_images <- mnist$train$x
+  train_labels <- mnist$train$y
+  test_images <- mnist$test$x
+  test_labels <- mnist$test$y
+  rm(mnist)
+  save(
+    train_images, train_labels, test_images, test_labels,
+    file = data_dir %>% file.path("mnist.rda")
+  )
+} else 
+  load(file = data_dir %>% file.path("mnist.rda"))
+
+plot_tile(x=train_images, y=train_labels, n=16L, m=12L)
+```
+
+The last code line calls a custom plotting function, defined in the sources, and
+that allows one to plot a tile of digit images together with their labels. The
+numbers of columns and rows of digits that are displayed are controlled by
+arguments `n` and `m`, respectively.
+
+## Reshaping the array
+
+The image data set is a 3-d array (images,width,height) of grayscale values. To
+prepare the data for training we convert the 3-d arrays into matrices by
+reshaping width and height into a single dimension (i.e., 28x28 images are
+flattened into length 784 vectors). Then, we convert the grayscale values from
+integers ranging between 0 to 255 into floating point values ranging between 0
+and 1. Here, we need function `reticulate::array_reshape()` because the images
+are stored using column-major ordering, which is customarily used for storing
+data in `R` (see, `help("array_reshape",package="reticulate")` for details).
+
+```{r, cache=TRUE}
+train_images %<>% array_reshape(c(nrow(.), 28L*28L))
+test_images %<>% array_reshape(c(nrow(.), 28L*28L))
+```
+
+Changing the scaling of the values into the 0-1 interval:
+
+```{r, cache=TRUE}
+train_images %<>% {./255}
+test_images %<>% {./255}
+```
+
+Changing the coding of the label to categorical (binary) coding:
+
+```{r, cache=TRUE}
+train_labels %<>% to_categorical(10)
+test_labels %<>% to_categorical(10)
+```
+
+Instead of single vector of integer, we now have a binary matrix:
+
+```{r}
+train_labels %>% head
+```
+
+# Keras sequential model
+
+Perhaps the simplest type of ANN is a sequential model whereby a single input
+layers feeds a chain of hidden layers culminating into a single output layer.
+This type of ANN is implemented using function `keras_model_sequential` as
+follows:
+
+```{r}
+keras_model_sequential() %>%
+  layer_dense(
+    input_shape = c(28L*28L),
+    units = 256,
+    activation = 'relu',
+    name = "dense_1"
+  ) %>%
+  layer_dense(
+    units = 10,
+    activation = 'softmax',
+    name = "output"
+  ) -> ann_model
+```
+
+The resulting model (`ann_model`) has a dense hidden layer with $256$ nodes.
+Because it inherits from `keras_model_sequential()` rather than an explicit
+upstream layer, function `layer_dense` needs to be provided its input shape
+using argument `input_shape`. The $28 \times 28$ images matrices were vectorized
+into length $784$ vectors, and thus the input shape is `c(784)`. The output of
+the first layer has activation function `'relu'`, which is a simple
+defined-by-parts non-linear function returning positive values unchanged and $0$
+for the negative values:
+$$
+RELU(x) = 
+\left\{
+    \begin{array}{lr}
+        x, & \text{if } x > 0\\
+        0, & \text{if } x \leq 0
+    \end{array}
+\right\}
+$$
+The output of the dense layer is fed directly into a second dense layer with a
+softmax output. The softmax function outputs the probability of different
+outcomes among the complete set of possible outcomes for a given problem. Here
+we have 10 digits, and thus the softmax will output 10 probabilities summing to
+$1$ for each image. Each probability is that of the image being associated with
+a particular label according to the model. The softmax function is defined as
+follows:
+$$
+\text{softmax}(x_i) = {\text{e}^{x_i} \over \sum_{\forall j} \text{e}^{x_j}}
+$$
+
+## Compiling and training the model 
+
+Before being trained, the model first needs to be compiled as follows:
+
+```{r}
+ann_model %>%
+  compile(
+    loss = 'categorical_crossentropy',
+    optimizer = optimizer_rmsprop(),
+    metrics = c('accuracy')
+  )
+```
+
+Argument `loss` is a textual variable specifying the loss function to be used
+for training the model. Argument `optimizer` specified the optimizer used to
+train the model (namely, to perform the gradient descent of the loss function
+over the model weights). Argument `metrics` specifies the metrics to estimate
+the model success (here: 'accuracy', which means the proportion of the labels
+that are correctly called).
+
+The model is then fit to the training data as follows:
+
+```{r, eval=FALSE}
+ann_model %>%
+  fit(
+    train_images,
+    train_labels,
+    epochs = 60,
+    batch_size = 120,
+    validation_split = 0.2
+  ) -> history
+```
+```{r, eval=FALSE, echo=FALSE}
+ann_model %>%
+  save_model_hdf5(
+    filepath = "my_model.h5",
+    overwrite = TRUE,
+    include_optimizer = TRUE
+  )
+save(history, file = "history.rda")
+```
+```{r, echo=FALSE}
+load_model_hdf5("my_model.h5") -> ann_model
+load(file = "history.rda")
+```
+
+Its training history is plotted as follows:
+
+```{r, fig.width=7, fig.height=5}
+history %>% plot
+```
+
+The fitted model (i.e., its structure, weights, and optimizer state) can be
+saved to the hdf5 format and then loaded as follows:
+
+```{r, eval=FALSE}
+ann_model %>%
+  save_model_hdf5(
+    filepath = "my_model.h5",
+    overwrite = TRUE,
+    include_optimizer = TRUE
+  )
+load_model_hdf5("my_model.h5") -> ann_model
+```
+
+Also, its is possible to save the model structure as a JSON string as follows:
+
+```{r}
+ann_model %>% model_to_json -> json_string
+json_string %>% cat(file="my_model.json")
+```
+
+The JSON string will not save the model weights. The latter can be saved as an
+hdf5 file as follows:
+
+```{r}
+ann_model %>%
+  save_model_weights_hdf5(
+    filepath = "my_model_weights.h5",
+    overwrite = TRUE
+  )
+```
+
+The model can be loaded from these storage files as follows:
+
+```{r}
+model_from_json(json_string) -> model0
+model0 %>% load_model_weights_hdf5('my_model_weights.h5')
+```
+
+## Evaluating the model's out-of-the-sample accuracy
+
+The model's performance metrics are evaluated from the test images and labels as
+follows:
+
+```{r, eval=FALSE}
+ann_model %>%
+  evaluate(
+    test_images,
+    test_labels
+  ) -> metrics
+```
+```{r, eval=FALSE, echo=FALSE}
+save(metrics, file="metrics.rda")
+```
+```{r, echo=FALSE}
+load(file="metrics.rda")
+metrics
+```
+
+One obtains the model's predicted test labels as follows:
+
+```{r, eval=FALSE}
+ann_model %>%
+  predict(test_images) %>%
+  apply(1L, function(x) which.max(x) - 1L) %>%
+  as.factor -> fitted_labels
+```
+```{r, eval=FALSE, echo=FALSE}
+save(fitted_labels, file="fitted_labels.rda")
+```
+```{r, echo=FALSE}
+load(file="fitted_labels.rda")
+```
+
+The confusion matrix is obtained as follows:
+
+```{r, eval=FALSE}
+test_labels %>%
+  apply(1L, function(x) which.max(x) - 1L) %>%
+  as.factor -> reference_labels
+fitted_labels %>%
+  confusionMatrix(
+    reference_labels
+  ) -> cmat
+cmat
+```
+```{r, eval=FALSE, echo=FALSE}
+save(cmat, file="Confusion_matrix.rda")
+```
+```{r, echo=FALSE}
+load(file="Confusion_matrix.rda")
+cmat
+```
+
+Some errors are more common than others. For instances, digits 5 was taken to
+be a 3, and 7 were taken to be 2 more often than 4 were confused for 1. This is
+not surprising from general knowledge.
