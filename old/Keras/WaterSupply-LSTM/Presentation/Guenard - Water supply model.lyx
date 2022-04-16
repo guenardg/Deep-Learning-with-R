@@ -1,0 +1,4704 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass beamer
+\begin_preamble
+\usetheme{Frankfurt}
+\usecolortheme{rose}
+
+\setbeamercovered{transparent}
+% or whatever (possibly just delete it)
+\end_preamble
+\use_default_options false
+\maintain_unincluded_children false
+\language british
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman times
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 2
+\use_package amssymb 2
+\use_package cancel 1
+\use_package esint 0
+\use_package mathdots 0
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 2
+\tocdepth 2
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Towards an operational model to forecast water supply to water bodies
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+Forecasting water supply
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Author
+Guillaume Guénard 
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+Guénard
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Date
+Québec 20 Septembre 2016
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+Québec 2016
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+%
+\backslash
+pgfdeclareimage[height=1.0cm]{UdeM}{/home/guenardg/Documents/PPhD/Presentations/i
+mages/Universite_de_Montreal.eps}
+\end_layout
+
+\begin_layout Plain Layout
+
+%
+\backslash
+logo{
+\backslash
+pgfuseimage{UdeM}}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+AtBeginSubsection[]{
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+frame<beamer>{ 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+frametitle{CONTENT}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+tableofcontents[currentsection,currentsubsection] 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+  }
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+beamerdefaultoverlayspecification{<+->}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+CONTENT
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Section
+Introduction
+\end_layout
+
+\begin_layout Subsection
+Background
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+WATER SUPPLY
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<1->
+\end_layout
+
+\end_inset
+
+The net amount of water reaching a waterbody or a stream
+\end_layout
+
+\begin_layout Itemize
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<2->
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $Supply=Precip-evap\,\pm\,storage$
+\end_inset
+
+
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+snow pack -- meltdown, groundwater
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<3->
+\end_layout
+
+\end_inset
+
+Value: a head start for decision-making, for instance,
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<4->
+\end_layout
+
+\end_inset
+
+know whether and when to use or store water
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<5->
+\end_layout
+
+\end_inset
+
+foresee public safety issues (flooding risk)
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+DRIVERS
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<1->
+\end_layout
+
+\end_inset
+
+Atmospheric circulation (global and local)
+\end_layout
+
+\begin_layout Itemize
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<2->
+\end_layout
+
+\end_inset
+
+Topography:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<3->
+\end_layout
+
+\end_inset
+
+surface area of the watershed
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<4->
+\end_layout
+
+\end_inset
+
+vegetation cover
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<5->
+\end_layout
+
+\end_inset
+
+ground material and thickness
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<6->
+\end_layout
+
+\end_inset
+
+Temperature:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<7->
+\end_layout
+
+\end_inset
+
+evaporation
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<8->
+\end_layout
+
+\end_inset
+
+ice formation and meltdown
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Subsection
+Objective: develop statistical models to forecast water supply from an area
+\begin_inset Argument 2
+status collapsed
+
+\begin_layout Plain Layout
+Forecast water supply
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+OBJECTIVE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Block
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+1-
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Argument 2
+status collapsed
+
+\begin_layout Plain Layout
+Question
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Block
+Is it possible to estimate the water supply of a given water body in the
+ future using information from different sources (predictors)?
+\end_layout
+
+\begin_layout Itemize
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<2->
+\end_layout
+
+\end_inset
+
+Predictors may be taken in
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<3->
+\end_layout
+
+\end_inset
+
+the past (historical records), 
+\end_layout
+
+\begin_layout Itemize
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<4->
+\end_layout
+
+\end_inset
+
+the present (automated sampling), and
+\end_layout
+
+\begin_layout Itemize
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<5->
+\end_layout
+
+\end_inset
+
+the future (predictable)
+\end_layout
+
+\end_deeper
+\begin_layout Block
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+6-
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Argument 2
+status collapsed
+
+\begin_layout Plain Layout
+Challenge
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Block
+Find a way to associate information from various sources and their consequence
+ on the future water supply.
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Section
+Methods
+\end_layout
+
+\begin_layout Subsection
+Autoregressive modelling
+\begin_inset Argument 2
+status collapsed
+
+\begin_layout Plain Layout
+Auto-regression
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+DEFINITIONS
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<1->
+\end_layout
+
+\end_inset
+
+Autocorrelation: the correlation of a series with a version of itself having
+ an offset
+\end_layout
+
+\begin_layout Itemize
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<2->
+\end_layout
+
+\end_inset
+
+Cross-correlation: the correlation of two series, with one of them having
+ an offset
+\end_layout
+
+\begin_layout Itemize
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<3->
+\end_layout
+
+\end_inset
+
+By analogy:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<4->
+\end_layout
+
+\end_inset
+
+autoregression (AR): a model predicting values of a variable from its previous
+ values, and
+\end_layout
+
+\begin_layout Itemize
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<5->
+\end_layout
+
+\end_inset
+
+cross-regression: a model prediction values of a variable from values of
+ another variable taken at previous time in the past
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<6->
+\end_layout
+
+\end_inset
+
+The two type of descriptors (auto- and cross-regressive) can be used simultaneou
+sly and with other type of descriptors
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+DESCRIPTOR COLLINEARITY
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<1->
+\end_layout
+
+\end_inset
+
+Hopefully, autoregressive descriptors are collinear as this is a corellary
+ for auto-regression
+\end_layout
+
+\begin_layout Itemize
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<2->
+\end_layout
+
+\end_inset
+
+Problem: descriptors are numerous and of uneven relevance
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<3->
+\end_layout
+
+\end_inset
+
+a single descriptor from the recent past is more relevant that for the more
+ distant past,
+\end_layout
+
+\begin_layout Itemize
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<4->
+\end_layout
+
+\end_inset
+
+information from closeby descriptors is redundant
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<5->
+\end_layout
+
+\end_inset
+
+It would be best to use fewer descriptors for the past than for the present
+\end_layout
+
+\begin_layout Itemize
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<6->
+\end_layout
+
+\end_inset
+
+The few descriptors would best integrate longer and longer time periods
+ as we go back in time
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+SOLUTION
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Block
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+1-
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Argument 2
+status collapsed
+
+\begin_layout Plain Layout
+Multi-Resolution Impulse (MRI) Filter
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Block
+Apply a low-pass filter whose bandwidth shrink as we proceed back in time.
+ Sub-sample the resulting signal in steps of increasing size.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<2->
+\end_layout
+
+\end_inset
+
+Initial bandwidth: infinite (no filtering at all)
+\end_layout
+
+\begin_layout Itemize
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<3->
+\end_layout
+
+\end_inset
+
+Final bandwidth: 
+\begin_inset Formula $0$
+\end_inset
+
+ (only a constant 
+\begin_inset Quotes eld
+\end_inset
+
+bias
+\begin_inset Quotes erd
+\end_inset
+
+; or mean value)
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+IMPLEMENTATION
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<1->
+\end_layout
+
+\end_inset
+
+Take a record of observations of a given duration (aperture: 
+\begin_inset Formula $width$
+\end_inset
+
+; most recent first, most ancient last)
+\end_layout
+
+\begin_layout Itemize
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<2->
+\end_layout
+
+\end_inset
+
+Decompose that record using Discrete Wavelets Transforms (DWT)
+\end_layout
+
+\begin_layout Itemize
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<3->
+\end_layout
+
+\end_inset
+
+Keep only the first (or first few) Wavelet coefficient for each resolution
+ level
+\end_layout
+
+\begin_layout Itemize
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<4->
+\end_layout
+
+\end_inset
+
+Reconstruct the MRI-filtered signal with the remaining Wavelet coefficients
+\end_layout
+
+\begin_layout Itemize
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<5->
+\end_layout
+
+\end_inset
+
+Sample the filtered signal in dyadic (power of two) steps: 
+\begin_inset Formula $2^{0},\,2^{1},\,2^{2},\,...,\,2^{n}$
+\end_inset
+
+, where 
+\begin_inset Formula $n=\left\lfloor \log_{2}width\right\rfloor $
+\end_inset
+
+(the mean can be used as well)
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+EXAMPLE OF AN MRI
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figures-Expl/Filter-1.jpg
+	scale 33
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Time series (temperature in International Falls airport, MN, USA) with unfiltere
+d past record of 
+\begin_inset Formula $width=64$
+\end_inset
+
+ observations (in red).
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+EXAMPLE OF AN MRI
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figures-Expl/Filter-2.jpg
+	scale 33
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Filtered time series: half of the (Haar) wavelet coefficients (or at least
+ one) were kept for each level of resolution.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+EXAMPLE OF AN MRI
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figures-Expl/Filter-3.jpg
+	scale 33
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Filtered time series: a quarter of the wavelet coefficients (or at least
+ one) were kept for each level of resolution.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+EXAMPLE OF AN MRI
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figures-Expl/Filter-4.jpg
+	scale 33
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Filtered time series: an eighth of the wavelet coefficients (or at least
+ one) were kept for each level of resolution.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+EXAMPLE OF AN MRI
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figures-Expl/Filter-5.jpg
+	scale 33
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Filtered time series: an 
+\begin_inset Formula $16{}^{\mathrm{th}}$
+\end_inset
+
+ of the wavelet coefficients (or at least one) were kept for each level
+ of resolution.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+EXAMPLE OF AN MRI
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figures-Expl/Filter-6.jpg
+	scale 33
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Filtered time series: a 
+\begin_inset Formula $32{}^{\mathrm{th}}$
+\end_inset
+
+ of the wavelet coefficients (or at least one) were kept for each level
+ of resolution.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+SEASONAL FORCING
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figures-Expl/Seasonal Forcing.jpg
+	scale 33
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Models were also given a pair of variables with a one-year period and offset
+ by 
+\begin_inset Formula $0.25\,\mathrm{y}$
+\end_inset
+
+ to inform them about the time of the year and help them model seasonal
+ variation (it is highly predictable indeed).
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Subsection
+Artificial Neural Network (ANN) models
+\begin_inset Argument 2
+status collapsed
+
+\begin_layout Plain Layout
+ANN models
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+ANN MODELS
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figures-Expl/300px-Colored_neural_network-Wikipedia.jpg
+	scale 45
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+An ANN model involves a stack of multi-descriptor and multi-response regression
+ models connected together with non-linear transformation functions (the
+ link function) at the hidden layer.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+ANN MODELS
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<1->
+\end_layout
+
+\end_inset
+
+We used a single-hidden-layer perceptron
+\end_layout
+
+\begin_layout Itemize
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<2->
+\end_layout
+
+\end_inset
+
+Single input, hidden, and output layers
+\end_layout
+
+\begin_layout Itemize
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<3->
+\end_layout
+
+\end_inset
+
+Involves two regression models:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<3->
+\end_layout
+
+\end_inset
+
+Input to hidden,
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<3->
+\end_layout
+
+\end_inset
+
+hidden to output
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<4->
+\end_layout
+
+\end_inset
+
+The hidden layer has logistic links to the second regression
+\end_layout
+
+\begin_layout Itemize
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<5->
+\end_layout
+
+\end_inset
+
+The output layer has no link function to the data
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Subsection
+Building the models
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+THE DESCRIPTORS
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<1->
+\end_layout
+
+\end_inset
+
+Atmospheric (MRI-filtered AR descriptors):
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<2->
+\end_layout
+
+\end_inset
+
+median daily air temperature at International Falls airport (IFL, 
+\begin_inset Formula $48.5614,-93.3981$
+\end_inset
+
+; local)
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<3->
+\end_layout
+
+\end_inset
+
+North-Atlantic Oscillation (NAO; global)
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<4->
+\end_layout
+
+\end_inset
+
+Seasonal forcing
+\end_layout
+
+\begin_layout Itemize
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<5->
+\end_layout
+
+\end_inset
+
+MRI-filtered AR descriptors from the water supply time series
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+THE MODELS
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<1->
+\end_layout
+
+\end_inset
+
+Different number of hidden nodes were tried:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<2->
+\end_layout
+
+\end_inset
+
+Air temperature and NAO -- from 
+\begin_inset Formula $1$
+\end_inset
+
+ to 
+\begin_inset Formula $10$
+\end_inset
+
+ nodes
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<3->
+\end_layout
+
+\end_inset
+
+Water supply -- from 
+\begin_inset Formula $1$
+\end_inset
+
+ to 
+\begin_inset Formula $6$
+\end_inset
+
+ nodes
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<4->
+\end_layout
+
+\end_inset
+
+A single value of (
+\begin_inset Formula $L_{2}$
+\end_inset
+
+) regularisation parameters was applied to each type of descriptors
+\end_layout
+
+\begin_layout Itemize
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<5->
+\end_layout
+
+\end_inset
+
+Optimal number of nodes and values of weight regularisation estimated by
+ Differential Evolution (DE) using 
+\begin_inset Formula $12$
+\end_inset
+
+-month cross-validation sub-samples
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Takes 
+\begin_inset Formula $2-3\,\mathrm{d}$
+\end_inset
+
+ to compute on a 
+\begin_inset Formula $16$
+\end_inset
+
+ core Intel® Xeon® E5-2650 @ 
+\begin_inset Formula $2\,\mathrm{GHz}$
+\end_inset
+
+ machine running parallel code
+\end_layout
+
+\end_inset
+
+):
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<6->
+\end_layout
+
+\end_inset
+
+Air temperature and NAO -- 
+\begin_inset Formula $20$
+\end_inset
+
+ individuals and 
+\begin_inset Formula $100$
+\end_inset
+
+ generations,
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<7->
+\end_layout
+
+\end_inset
+
+Water supply -- 
+\begin_inset Formula $40$
+\end_inset
+
+ individuals and 
+\begin_inset Formula $100$
+\end_inset
+
+ generations
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+AIR TEMPERATURE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<1->
+\end_layout
+
+\end_inset
+
+Needed to forecast water supply (short term precipitation patterns and meltdown)
+\end_layout
+
+\begin_layout Itemize
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<1->
+\end_layout
+
+\end_inset
+
+Descriptors:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<2->
+\end_layout
+
+\end_inset
+
+Seasonal forcing
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<2->
+\end_layout
+
+\end_inset
+
+MRI-filtered AR descriptors for monthly air temperature time series (
+\begin_inset Formula $width=64$
+\end_inset
+
+; 
+\begin_inset Formula $7$
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+descriptors)
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+NAO
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<1->
+\end_layout
+
+\end_inset
+
+Needed to forecast water supply (long term precipitation patterns)
+\end_layout
+
+\begin_layout Itemize
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<1->
+\end_layout
+
+\end_inset
+
+Descriptors:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<2->
+\end_layout
+
+\end_inset
+
+Seasonal forcing
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<2->
+\end_layout
+
+\end_inset
+
+MRI-filtered AR descriptors for the monthly NAO time series (
+\begin_inset Formula $width=64$
+\end_inset
+
+; 
+\begin_inset Formula $7$
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+descriptors)
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+WATER SUPPLY
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<1->
+\end_layout
+
+\end_inset
+
+Goal of the present study
+\end_layout
+
+\begin_layout Itemize
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<2->
+\end_layout
+
+\end_inset
+
+Descriptors:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<3->
+\end_layout
+
+\end_inset
+
+Seasonal forcing
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<4->
+\end_layout
+
+\end_inset
+
+The first four MRI-filtered AR descriptors for air temperature (times 
+\begin_inset Formula $1\,,2,\,4,\,8$
+\end_inset
+
+: from present to 
+\begin_inset Formula $7$
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+months in the past)
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<5->
+\end_layout
+
+\end_inset
+
+The last four MRI-filtered AR descriptors for the NAO (times 
+\begin_inset Formula $8\,,16,\,32,\,64$
+\end_inset
+
+: from 
+\begin_inset Formula $7$
+\end_inset
+
+ months to 
+\begin_inset Formula $5\,\mathrm{y}$
+\end_inset
+
+ and 
+\begin_inset Formula $4$
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+months in the past)
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<6->
+\end_layout
+
+\end_inset
+
+The MRI-filtered AR descriptors for the monthly water supply time series
+ (present to 
+\begin_inset Formula $5\,\mathrm{y}$
+\end_inset
+
+ and 
+\begin_inset Formula $4$
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+months in the past; 
+\begin_inset Formula $7$
+\end_inset
+
+ descriptors)
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Section
+Results
+\end_layout
+
+\begin_layout Subsection
+Auxiliary models
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+AUXILIARY MODELS
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Hyper-parameters of the auxiliary models
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+scriptsize
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Tabular
+<lyxtabular version="3" rows="3" columns="5">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+series
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+nodes
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+S
+\begin_inset space \thinspace{}
+\end_inset
+
+Forcing
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+AR
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+RMS
+\begin_inset space \thinspace{}
+\end_inset
+
+Error
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Air temp
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $4$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $6.96\,\mathrm{e}-4$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $8.41\,\mathrm{e}+3$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.63\text{°C}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+NAO
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+A flat model for all practical purposes
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $8$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.43\,\mathrm{e+1}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.73\,\mathrm{e}+4$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.71\,\mathrm{kPa}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+normalsize
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+WATER SUPPLY
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Hyper-parameters of the water supply models
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+scriptsize
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="7">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell multirow="3" alignment="center" valignment="middle" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+series
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="3" alignment="center" valignment="middle" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+nodes
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $L_{2}$
+\end_inset
+
+ regularisation parameters
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+RMS
+\begin_inset space \thinspace{}
+\end_inset
+
+Error
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="4" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+S
+\begin_inset space \thinspace{}
+\end_inset
+
+Forcing
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Air
+\begin_inset space \thinspace{}
+\end_inset
+
+temp
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+NAO
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+AR
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(
+\begin_inset Formula $\mathrm{m^{3}s^{-1}}$
+\end_inset
+
+)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Namakan
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.02\thinspace\mathrm{e}-1$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $6.75\thinspace\mathrm{e}+1$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $3.00\thinspace\mathrm{e}+2$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $4.21\thinspace\mathrm{e}+2$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $77.40$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Rainy (net)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $6$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.25\thinspace\mathrm{e}-1$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.20$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $6.96\thinspace\mathrm{e}+3$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $8.48\thinspace\mathrm{e}+3$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $81.81$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Rainy (tot)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.27\thinspace\mathrm{e}-4$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $4.27\,\mathrm{e}-1$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $7.24\thinspace\mathrm{e}+3$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $3.04\thinspace\mathrm{e}-2$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $151.0$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+normalsize
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Subsection
+Water supply models
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+NAMAKAN LAKE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figures-logM/Monthly_forecastsNBSNamakan_1948-1982.pdf
+	width 9cm
+	height 5.25cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Observed water supply in Namakan Lake between 
+\begin_inset Formula $1948$
+\end_inset
+
+ and 
+\begin_inset Formula $1982$
+\end_inset
+
+ (black line) with forecasts made from different months in the past (red:
+ 
+\begin_inset Formula $1$
+\end_inset
+
+, yellow: 
+\begin_inset Formula $2$
+\end_inset
+
+, green: 
+\begin_inset Formula $3$
+\end_inset
+
+, blue: 
+\begin_inset Formula $6$
+\end_inset
+
+, and purple: 
+\begin_inset Formula $12$
+\end_inset
+
+).
+ Vertical lines mark the mid-March (dashed), mid-June (dotted), and mid-August
+ (dot-dash).
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+NAMAKAN LAKE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figures-logM/Monthly_forecastsNBSNamakan_1982-2016.pdf
+	width 9cm
+	height 5.25cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Observed water supply in Namakan Lake between 
+\begin_inset Formula $1982$
+\end_inset
+
+ and 
+\begin_inset Formula $2016$
+\end_inset
+
+ (black line) with forecasts made from different months in the past (red:
+ 
+\begin_inset Formula $1$
+\end_inset
+
+, yellow: 
+\begin_inset Formula $2$
+\end_inset
+
+, green: 
+\begin_inset Formula $3$
+\end_inset
+
+, blue: 
+\begin_inset Formula $6$
+\end_inset
+
+, and purple: 
+\begin_inset Formula $12$
+\end_inset
+
+).
+ Vertical lines mark the mid-March (dashed), mid-June (dotted), and mid-August
+ (dot-dash).
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+RAINY LAKE (NET)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figures-logM/Monthly_forecastsNBSRainyNet_1948-1982.pdf
+	width 9cm
+	height 5.25cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Observed net water supply in Rainy Lake between 
+\begin_inset Formula $1948$
+\end_inset
+
+ and 
+\begin_inset Formula $1982$
+\end_inset
+
+ (black line) with forecasts made from different months in the past (red:
+ 
+\begin_inset Formula $1$
+\end_inset
+
+, yellow: 
+\begin_inset Formula $2$
+\end_inset
+
+, green: 
+\begin_inset Formula $3$
+\end_inset
+
+, blue: 
+\begin_inset Formula $6$
+\end_inset
+
+, and purple: 
+\begin_inset Formula $12$
+\end_inset
+
+).
+ Vertical lines mark the mid-March (dashed), mid-June (dotted), and mid-August
+ (dot-dash).
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+RAINY LAKE (NET)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figures-logM/Monthly_forecastsNBSRainyNet_1982-2016.pdf
+	width 9cm
+	height 5.25cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Observed net water supply in Rainy Lake between 
+\begin_inset Formula $1982$
+\end_inset
+
+ and 
+\begin_inset Formula $2016$
+\end_inset
+
+ (black line) with forecasts made from different months in the past (red:
+ 
+\begin_inset Formula $1$
+\end_inset
+
+, yellow: 
+\begin_inset Formula $2$
+\end_inset
+
+, green: 
+\begin_inset Formula $3$
+\end_inset
+
+, blue: 
+\begin_inset Formula $6$
+\end_inset
+
+, and purple: 
+\begin_inset Formula $12$
+\end_inset
+
+).
+ Vertical lines mark the mid-March (dashed), mid-June (dotted), and mid-August
+ (dot-dash).
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+RAINY LAKE (TOTAL)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figures-logM/Monthly_forecastsNBSRainy_1948-1982.pdf
+	width 9cm
+	height 5.25cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Observed total water supply in Rainy Lake between 
+\begin_inset Formula $1948$
+\end_inset
+
+ and 
+\begin_inset Formula $1982$
+\end_inset
+
+ (black line) with forecasts made from different months in the past (red:
+ 
+\begin_inset Formula $1$
+\end_inset
+
+, yellow: 
+\begin_inset Formula $2$
+\end_inset
+
+, green: 
+\begin_inset Formula $3$
+\end_inset
+
+, blue: 
+\begin_inset Formula $6$
+\end_inset
+
+, and purple: 
+\begin_inset Formula $12$
+\end_inset
+
+).
+ Vertical lines mark the mid-March (dashed), mid-June (dotted), and mid-August
+ (dot-dash).
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+RAINY LAKE (TOTAL)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figures-logM/Monthly_forecastsNBSRainy_1982-2016.pdf
+	width 9cm
+	height 5.25cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Observed total water supply in Rainy Lake between 
+\begin_inset Formula $1982$
+\end_inset
+
+ and 
+\begin_inset Formula $2016$
+\end_inset
+
+ (black line) with forecasts made from different months in the past (red:
+ 
+\begin_inset Formula $1$
+\end_inset
+
+, yellow: 
+\begin_inset Formula $2$
+\end_inset
+
+, green: 
+\begin_inset Formula $3$
+\end_inset
+
+, blue: 
+\begin_inset Formula $6$
+\end_inset
+
+, and purple: 
+\begin_inset Formula $12$
+\end_inset
+
+).
+ Vertical lines mark the mid-March (dashed), mid-June (dotted), and mid-August
+ (dot-dash).
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+RAINY + NAMAKAN
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figures-logM/Monthly_forecastsNBSRainy+Namakan_1948-1982.pdf
+	width 9cm
+	height 5cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Observed total water supply in Rainy Lake between 
+\begin_inset Formula $1948$
+\end_inset
+
+ and 
+\begin_inset Formula $1982$
+\end_inset
+
+ (black line) with the sum of the forecasts for the two lakes (Namakan +
+ net Rainy) made from different months in the past (red: 
+\begin_inset Formula $1$
+\end_inset
+
+, yellow: 
+\begin_inset Formula $2$
+\end_inset
+
+, green: 
+\begin_inset Formula $3$
+\end_inset
+
+, blue: 
+\begin_inset Formula $6$
+\end_inset
+
+, and purple: 
+\begin_inset Formula $12$
+\end_inset
+
+).
+ Vertical lines mark the mid-March (dashed), mid-June (dotted), and mid-August
+ (dot-dash).
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+RAINY + NAMAKAN
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figures-logM/Monthly_forecastsNBSRainyNet_1982-2016.pdf
+	width 9cm
+	height 5cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Observed total water supply in Rainy Lake between 
+\begin_inset Formula $1982$
+\end_inset
+
+ and 
+\begin_inset Formula $2016$
+\end_inset
+
+ (black line) with the sum of the forecasts for the two lakes (Namakan +
+ net Rainy) made from different months in the past (red: 
+\begin_inset Formula $1$
+\end_inset
+
+, yellow: 
+\begin_inset Formula $2$
+\end_inset
+
+, green: 
+\begin_inset Formula $3$
+\end_inset
+
+, blue: 
+\begin_inset Formula $6$
+\end_inset
+
+, and purple: 
+\begin_inset Formula $12$
+\end_inset
+
+).
+ Vertical lines mark the mid-March (dashed), mid-June (dotted), and mid-August
+ (dot-dash).
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Subsection
+Forecasting power
+\end_layout
+
+\begin_layout Frame
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+FORECASTING POWER
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Root Mean Square Error and 
+\begin_inset Formula $R^{2}$
+\end_inset
+
+ (in parenthesis) associated with forecasts performed from 
+\begin_inset Formula $1$
+\end_inset
+
+ to 
+\begin_inset Formula $12$
+\end_inset
+
+ months in the future for Namakan Lake and Rainy Lake.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+scriptsize
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Tabular
+<lyxtabular version="3" rows="13" columns="5">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Namakan
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Rainy (net)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Rainy (total)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Rainy+Namakan
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+65 (0.76)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+69 (0.70)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+100 (0.81)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+141 (0.61)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+82 (0.62)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+91 (0.48)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+148 (0.57)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+158 (0.52)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+96 (0.48)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+94 (0.45)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+173 (0.42)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+171 (0.44)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+95 (0.49)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+94 (0.44)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+175 (0.41)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+171 (0.43)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+94 (0.50)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+95 (0.44)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+176 (0.41)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+171 (0.44)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+94 (0.50)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+95 (0.44)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+176 (0.41)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+172 (0.43)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+7
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+94 (0.50)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+95 (0.44)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+175 (0.41)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+172 (0.43)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+8
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+94 (0.51)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+95 (0.44)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+175 (0.41)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+172 (0.43)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+9
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+94 (0.51)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+95 (0.44)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+176 (0.41)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+172 (0.43)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+10
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+94 (0.51)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+95 (0.44)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+175 (0.41)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+172 (0.43)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+11
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+94 (0.51)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+95 (0.44)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+175 (0.41)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+172 (0.43)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+12
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+94 (0.51)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+95 (0.44)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+175 (0.41)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+172 (0.44)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+normalsize
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+SEASONAL PREDICTIONS: SPRING FLOOD
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename unnamed-chunk-14-1.pdf
+	scale 35
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Average water supply observed and forecast during the spring flood (March–June)
+ with their prediction coefficients.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+SEASONAL PREDICTIONS: LOW WATERS
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename unnamed-chunk-15-1.pdf
+	scale 35
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Average water supply observed and forecast during the low waters (July–February)
+ with their prediction coefficients.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Section
+Conclusion
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+CONCLUSION
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Block
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+1-
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Argument 2
+status collapsed
+
+\begin_layout Plain Layout
+Answer
+\end_layout
+
+\end_inset
+
+ Water supply model can be developed to predict water supply to water bodies
+\end_layout
+
+\begin_layout Itemize
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<2->
+\end_layout
+
+\end_inset
+
+Forecasting power degrades after 
+\begin_inset Formula $2$
+\end_inset
+
+ months, when the model starts to predict average yearly fluctuations
+\end_layout
+
+\begin_layout Itemize
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<3->
+\end_layout
+
+\end_inset
+
+Much more capable at predicting the short-terms spring high waters than
+ the low waters
+\end_layout
+
+\begin_layout Itemize
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<4->
+\end_layout
+
+\end_inset
+
+Way of improvement
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<4->
+\end_layout
+
+\end_inset
+
+Using a deep neural network (one with 
+\begin_inset Formula $>1$
+\end_inset
+
+ hidden layer)
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<4->
+\end_layout
+
+\end_inset
+
+Using El-Ni
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+~{n}
+\end_layout
+
+\end_inset
+
+o Southern Oscillation (ENSO) rather than NAO
+\end_layout
+
+\end_deeper
+\end_deeper
+\end_body
+\end_document

@@ -1,0 +1,126 @@
+Compiling tensorflow
+
+-------------
+
+Building TensorFlow from source
+
+The official instructions on building TensorFlow are here: https://www.tensorflow.org/install/install_sources
+
+-------------
+
+Prerequisites
+
+We are assuming a build with CUDA support, as well as including SIMD optimizations (SSE3, SSE4, AVX, AVX2, FMA), on a Debian-like system (e.g. Ubuntu Linux).
+
+On new systems, one will have to install CUDA, CuDNN, plus the following dependencies:
+
+$ sudo apt-get install python3-numpy python3-dev python3-pip python3-wheel libcupti-dev
+
+CUDA: 9.2
+
+CuDNN: 7.2
+
+
+----------------
+
+Installing CuDNN
+
+
+
+
+
+
+
+
+(Leave out libcupti-dev when not building with GPU support.)
+
+Good to know: The compute capabilities for
+
+    Maxwell TITAN X: 5.2
+    Pascal TITAN X (2016): 6.1
+    GeForce GTX 1080 Ti: 6.1
+    Tesla V100: 7.0
+
+(See here for the full list.)
+
+----------------
+
+Installing Bazel (compiling)
+
+mkdir bazel && cd bazel
+wget https://github.com/bazelbuild/bazel/releases/download/0.17.2/bazel-0.17.2-dist.zip
+unzip bazel-0.17.2-dist.zip
+bash ./compile.sh
+
+Temporary export (to be visible from the whole filesystem):
+export PATH=`pwd`/output:$PATH
+
+****
+Otherwise, copy it to a folder in the systemwide PATH (eg. /usr/local/bin):
+sudo cp ./output/bazel /usr/local/bin/bazel
+****
+
+----------------
+
+Installing TensorFlow
+
+Building TensorFlow
+
+Create a Python 3 virtualenv, if you have not done this yet. For example:
+
+$ virtualenv -p python3 --system-site-packages ~/.virtualenvs/tf_dev
+
+Activate your respective Python 3 based virtual environment.
+
+$ source ~/.virtualenvs/tf_dev/bin/activate
+
+****
+It can later be deactivated later with
+$ deactivate
+****
+
+Clone the sources, and check out the desired branch. At the time of writing, 1.11.0 was
+the latest version; adjust if necessary.
+
+$ git clone https://github.com/tensorflow/tensorflow
+$ cd tensorflow
+$ git checkout v1.11.0
+
+Run the configuration script
+
+$ ./configure
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Download the TensorFlow source code
+
+git clone https://github.com/tensorflow/tensorflow.git
+cd tensorflow
+
+The repo defaults to the master development branch. You can also checkout a release branch to build:
+
+git checkout r1.11
+
+To test your copy of the source tree, run the following test (this may take a while):
+bazel test -c opt -- //tensorflow/... -//tensorflow/compiler/... -//tensorflow/contrib/lite/...
+
+
+
+
+
+

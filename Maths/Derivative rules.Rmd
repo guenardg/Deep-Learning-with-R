@@ -1,0 +1,67 @@
+---
+title: 'Mathematics: Derivative rules'
+author: "Guillaume Guénard"
+date: "`r format(Sys.time(), '%Y-%m-%d')`"
+output:
+  html_document:
+    toc: true
+    toc_depth: 3
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+# Chain rule
+
+Given two continuous and smooth functions f(x) and g(x):
+$$
+f(g(x))' = f'(g(x)) \cdot g'(x)
+$$
+In Leibniz notation:
+$$
+{df \over dx} = {df \over dg} \cdot {dg \over dx}
+$$
+More generally for any set of continuous and smooth functions f(x), g(x), ...,
+h(x):
+$$
+f(g(...(h(x))))' = f'(g(...(h(x)))) \cdot g'(...(h(x))) \cdot ... \cdot h'(x)
+$$
+The other rules are adaptations of that first rule.
+
+# Addition / subtraction rule
+
+$$
+(f(x) \pm g(x) \pm ... \pm h(x))' = f'(x) \pm g'(x) \pm ... \pm h'(x)
+$$
+
+# Multiplication rule
+
+$$
+(f(x) \cdot g(x))' = f'(x) \cdot g(x) + f(x) \cdot g'(x)
+$$
+
+# Quotient rule
+
+$$
+\left( f(x) \over g(x)  \right)' = {{f'(x) \cdot g(x) - f(x) \cdot g'(x)} \over (g(x))^2}
+$$
+
+# Power rule
+
+$$
+(f(x)^n)' = n \cdot f(x)^{n-1} \cdot f'(x)
+$$
+
+# Derivative cheat table
+
+| f(x)          | f'(x)             |
+| :---          | ----:             |
+| $a$           | $0$               |
+| $ax$          | $a$               |
+| $x^a$         | $a\cdot x^{a-1}$  |
+| $e^x$         | $e^x$             |
+
+
+

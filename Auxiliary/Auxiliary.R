@@ -30,3 +30,16 @@ plot_tile <- function(x,y,y_pred,n,m,from=1L,space=c(4L,4L),res=dim(x)[-1L]) {
   }
   return(invisible(NULL))
 }
+##
+decode_review <- function(x, rev_widx)
+  sapply(
+    x,
+    function(index) {
+      word <- if(index >= 3L) rev_widx[[as.character(index - 3L)]]
+      if(!is.null(word)) word else "?"
+    }
+  )
+##
+
+
+

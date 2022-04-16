@@ -1,8 +1,11 @@
 ---
 title: 'Exercises: Deep Learning with R - Chapter 2'
 author: "Guillaume Guénard"
-date: '2022-04-12'
-output: html_document
+date: "`r format(Sys.time(), '%Y-%m-%d')`"
+output:
+  html_document:
+    toc: true
+    toc_depth: 3
 ---
 
 ```{r setup, include=FALSE}
@@ -55,6 +58,15 @@ The last code line calls a custom plotting function, defined in the sources, and
 that allows one to plot a tile of digit images together with their labels. The
 numbers of columns and rows of digits that are displayed are controlled by
 arguments `n` and `m`, respectively.
+
+To plot a given digit, it is also possible to convert the corresponding slice
+(a matrix) into a color raster using function `as.raster` and plot it as
+follows:
+
+```{r}
+train_images[1L,,] %>% as.raster(max=255) %>% plot
+```
+
 
 ## Reshaping the array
 

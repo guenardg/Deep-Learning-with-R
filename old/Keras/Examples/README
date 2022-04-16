@@ -1,0 +1,9 @@
+
+
+addition_rnn:  https://github.com/rstudio/keras/blob/master/vignettes/examples/addition_rnn.R
+imdb_lstm:     https://github.com/rstudio/keras/blob/master/vignettes/examples/imdb_lstm.R
+stateful_lstm: https://github.com/rstudio/keras/blob/master/vignettes/examples/stateful_lstm.R
+
+
+
+

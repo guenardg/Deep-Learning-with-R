@@ -1,0 +1,248 @@
+---
+title: 'Exercises: Deep Learning with R - Chapter 3'
+author: "Guillaume Guénard"
+date: "`r format(Sys.time(), '%Y-%m-%d')`"
+output:
+  html_document:
+    toc: true
+    toc_depth: 3
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Packages, directories, and sources
+
+The following code loads the necessary `R` packages, resources directories, and
+sources:
+
+```{r}
+library(keras)
+library(magrittr)
+## library(caret)
+data_dir <- "../Data"
+aux_dir <- "../Auxiliary"
+aux_dir %>% file.path("Auxiliary.R") %>% source
+```
+
+## Loading the MNIST data
+
+```{r, fig.width=7, fig.height=5}
+load(file = data_dir %>% file.path("mnist.rda"))
+plot_tile(x=train_images[193L:384L,,], y=train_labels[193L:384L], n=16L, m=12L)
+```
+
+Data had to be arranged before being presented to the ANN model:
+
+```{r, cache=TRUE}
+train_images %<>% array_reshape(c(nrow(.), 28L*28L))
+test_images %<>% array_reshape(c(nrow(.), 28L*28L))
+
+train_images %<>% {./255}
+test_images %<>% {./255}
+
+train_labels %<>% to_categorical(10)
+test_labels %<>% to_categorical(10)
+```
+
+
+## Running chapter 2 example using the functional API
+
+Whereas `keras_model_sequential` was suitable for the widespread case of a model
+with a single input and output, the functional API enables one to define
+multiple inputs and outputs as well as other more adapted features such as
+skip-layer connections. To implement a model with the functional API, one has to
+first define the input(s) and the output(s), and then combine them using
+function `keras_model`. Here, the output is fed directly 
+
+```{r}
+layer_input(shape = c(28L*28L), name = "input") -> input
+input %>%
+  layer_dense(units = 32L, name = "hidden_1") %>%
+  layer_activation_relu(name = "RELU_1") -> hidden
+hidden %>%
+  layer_dense(units = 10L, name = "raw_output") %>%
+  layer_activation_softmax(name = "softmax_output")-> output
+keras_model(inputs = input, outputs = output) -> ann_model
+input
+hidden
+output
+```
+
+As with the one created using `keras_model_sequential`, the model has to be
+compiled before it is trained:
+
+```{r}
+ann_model %>%
+  compile(
+    loss = 'categorical_crossentropy',
+    optimizer = optimizer_rmsprop(),
+    metrics = c('accuracy')
+  )
+ann_model
+```
+
+It is trained as follows:
+
+```{r, eval=FALSE}
+ann_model %>%
+  fit(
+    train_images,
+    train_labels,
+    epochs = 60,
+    batch_size = 120,
+    validation_split = 0.2
+  ) -> history
+```
+```{r, eval=FALSE, echo=FALSE}
+ann_model %>%
+  save_model_hdf5(
+    filepath = "my_model.h5",
+    overwrite = TRUE,
+    include_optimizer = TRUE
+  )
+save(history, file = "history.rda")
+```
+```{r, echo=FALSE}
+load_model_hdf5("my_model.h5") -> ann_model
+load(file = "history.rda")
+```
+
+Its training history is plotted as follows:
+
+```{r, fig.width=7, fig.height=5}
+history %>% plot
+```
+
+## The IBDB data set
+
+A data set of $50\,000$ polarized from the Internet Movie Data Base (IMDB),
+split into $25\,000$ training examples and $25\,000$ testing examples. Each set
+is half negative and half positive. Data are obtained as follows:
+
+```{r, cache = TRUE}
+if(FALSE) {
+  imdb <- dataset_imdb(num_words = 1000L)
+  c(
+    c(
+      train_data,
+      train_labs
+    ),
+    c(
+      test_data,
+      test_labs
+    )
+  ) %<-% imdb
+  rm(imdb)
+  word_index <- dataset_imdb_word_index()
+  word_index %<>% unlist %>% sort
+  reverse_word_index <- names(word_index)
+  names(reverse_word_index) <- word_index
+  save(
+    train_data, train_labs, test_data, test_labs, word_index,
+    reverse_word_index,
+    file = data_dir %>% file.path("imdb.rda")
+  )
+} else
+  load(file = data_dir %>% file.path("imdb.rda"))
+```
+
+The label values refer to whether the review was positive (i.e., the value $1$
+refers to a positive review, the value $0$ to a negative review). Each data
+point is a vector of integers referring to words in the word index. The lower
+the word index value, the more frequent was the word its refers to. Values
+$0--2$ were reserved for "padding", "start of sequence", and "unknown", and thus
+data point values have to be subtracted $3$ before being used as index values.
+Here is an example of a decoded sequence:
+
+```{r}
+decode_review(test_data[[2L]],reverse_word_index) %>% paste(collapse = " ")
+```
+which, was, indeed, labeled as a positive review:
+
+```{r}
+test_labs[2L]
+```
+
+In this example, we try to predict whether a review is positive or negative
+using the word contents of the review. We will simply one-hot encode the word
+content of each review, which consists in building a binary matrix whose row
+represent the reviews, columns the words, and values specifying whether a given
+word was present in the review:
+
+```{r}
+vectorize_sequences <- function(seq, dim) {
+  res <- matrix(0, length(seq), dim)
+  for(i in 1L:length(seq))
+    res[i,seq[[i]]] <- 1
+  res
+}
+
+train_data %>% vectorize_sequences(10000) -> x_train
+test_data %>% vectorize_sequences(10000) -> x_test
+```
+
+We also need to convert the labels from integer to numeric (double precision):
+
+```{r}
+train_labs %>% as.numeric -> y_train
+test_labs %>% as.numeric -> y_test
+```
+
+A model with two hidden layers of 16 nodes each and a sigmoid output:
+
+```{r}
+keras_model_sequential() %>%
+  layer_dense(
+    input_shape=ncol(x_train),
+    units=16L,
+    activation = "relu",
+    name="hidden1"
+  ) %>%
+  layer_dense(
+    units=16L,
+    activation = "relu",
+    name="hidden2"
+  ) %>%
+  layer_dense(
+    units = 1L,
+    activation = "sigmoid"
+  ) -> model_imdb
+model_imdb
+```
+Compilation using the **rmsprop** optimizer and **binary_crossentropy** and the
+objective function:
+
+```{r}
+model_imdb %>%
+  compile(
+    optimizer = optimizer_rmsprop(learning_rate = 0.001),
+    loss = loss_binary_crossentropy,
+    metrics = metric_binary_accuracy
+  )
+```
+
+### Validation set
+
+Instead of use cross-validation (through argument `validation_split` in function
+`fit`), we will split the data set into a training an a validation set:
+
+```{r}
+model_imdb %>%
+  fit(
+    x_train,
+    y_train,
+    epoch = 20L,
+    batch_size = 500L,
+    validation_data = list(x_test, y_test)
+  )
+```
+
+
+
+
+As a simple example, we will one-hot encode the 
+
+
+

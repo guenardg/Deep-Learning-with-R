@@ -1,0 +1,291 @@
+## Tutorial: Basic Classification
+##
+library(keras)
+library(pixmap)
+source("../../R/AuxCode.R")
+##
+if(FALSE) {
+    fashion_mnist <- dataset_fashion_mnist()
+    save(fashion_mnist,file="../../Data/fashion_mnist.rda")
+} else
+    load(file="../../Data/fashion_mnist.rda")
+##
+## str(fashion_mnist)
+c(train_images, train_labels) %<-% fashion_mnist$train
+c(test_images, test_labels) %<-% fashion_mnist$test
+##
+## At this point we have four arrays: The train_images and train_labels arrays
+## are the training set — the data the model uses to learn. The model is tested
+## against the test set: the test_images, and test_labels arrays. The images
+## each are 28 x 28 arrays, with pixel values ranging between 0 and 255. The
+## labels are arrays of integers, ranging from 0 to 9.
+##
+class_names <- c('T-shirt/top','Trouser','Pullover','Dress','Coat','Sandal',
+                 'Shirt','Sneaker','Bag','Ankle boot')
+##
+## dim(train_images)
+## dim(train_labels)
+## head(train_labels,20L)
+##
+X11()
+plot_tile(x=train_images,y=train_labels,n=16,m=24)
+plot_tile(x=train_images,y=train_labels,y_pred=train_labels,n=16,m=24)
+plot_tile(x=train_images,y=train_labels,n=16,m=24,from=1L+16L*24L)
+##
+{
+    c(n,m) %<-% c(16L,24L)
+    ## X11(width=12,height=8)
+    ## par(mar=c(0,0,0,0))
+    from <- 1L
+    while(from < dim(train_images)[1L]) {
+        png(filename=sprintf("../../Image/TRAIN Fashion MNIST_%05d.png", from),width=1200,height=800)
+        par(mar=c(0,0,0,0))
+        plot_tile(x=train_images,y=train_labels,n=n,m=m,from=from)
+        ## dev.copy2pdf(file=sprintf("../../Image/TRAIN Fashion MNIST_%05d.pdf", from))
+        dev.off()
+        from <- from + n*m
+    }
+    rm(n,m,from)
+    ## dev.off()
+}
+##
+## dim(test_images)
+## dim(test_labels)
+{
+    c(n,m) %<-% c(16L,24L)
+    ## X11(width=12,height=8)
+    ## par(mar=c(0,0,0,0))
+    from <- 1L
+    while(from < dim(test_images)[1L]) {
+        png(filename=sprintf("../../Image/TEST Fashion MNIST_%05d.pdf", from),width=1200,height=800)
+        par(mar=c(0,0,0,0))
+        plot_tile(x=test_images,y=test_labels,n=n,m=m,from=from)
+        ## dev.copy2pdf(file=sprintf("../../Image/TEST Fashion MNIST_%05d.pdf", from))
+        dev.off()
+        from <- from + n*m
+    }
+    rm(n,m,from)
+    ## dev.off()
+}
+##
+library(tidyr)
+library(ggplot2)
+##
+## The data must be preprocessed before training the network. If you inspect the
+## first image in the training set, you will see that the pixel values fall in
+## the range of 0 to 255:
+image_1 <- as.data.frame(train_images[1L,,])
+colnames(image_1) <- seq_len(ncol(image_1))
+##
+image_1$y <- seq_len(nrow(image_1))
+image_1 <- gather(image_1, "x", "value", -y)
+image_1$x <- as.integer(image_1$x)
+##
+ggplot(image_1, aes(x = x, y = y, fill = value)) +
+    geom_tile() +
+    scale_fill_gradient(low = "white", high = "black", na.value = NA) +
+    scale_y_reverse() +
+    theme_minimal() +
+    theme(panel.grid = element_blank())   +
+    theme(aspect.ratio = 1) +
+    xlab("") +
+    ylab("")
+##
+## We scale these values to a range of 0 to 1 before feeding to the neural network
+## model. For this, we simply divide by 255.
+## It’s important that the training set and the testing set are preprocessed in the
+## same way:
+train_images <- train_images / 255
+test_images <- test_images / 255
+##
+par(mfcol=c(5,5))
+par(mar=c(0, 0, 1.5, 0), xaxs='i', yaxs='i')
+for (i in 1:25) { 
+    img <- train_images[i, , ]
+    img <- t(apply(img, 2, rev)) 
+    image(1:28, 1:28, img, col = gray((0:255)/255), xaxt = 'n', yaxt = 'n',
+          main = paste(class_names[train_labels[i] + 1]))
+}
+rm(i,img)
+##
+### Build the model
+##
+## Building the neural network requires configuring the layers of the model, then
+## compiling the model.
+##
+### Setup the layers
+##
+## The basic building block of a neural network is the layer. Layers extract
+## representations from the data fed into them. And, hopefully, these representations
+## are more meaningful for the problem at hand.
+## 
+## Most of deep learning consists of chaining together simple layers. Most layers, like
+## layer_dense, have parameters that are learned during training.
+##
+model <- keras_model_sequential()
+model %>%
+    layer_flatten(input_shape = c(28, 28)) %>%
+    layer_dense(units = 128, activation = 'relu') %>%
+    layer_dense(units = 10, activation = 'softmax')
+##
+## The first layer in this network, layer_flatten, transforms the format of the images
+## from a 2d-array (of 28 by 28 pixels), to a 1d-array of 28 * 28 = 784 pixels. Think of
+## this layer as unstacking rows of pixels in the image and lining them up. This layer has
+## no parameters to learn; it only reformats the data.
+##
+## After the pixels are flattened, the network consists of a sequence of two dense layers.
+## These are densely-connected, or fully-connected, neural layers. The first dense layer has
+## 128 nodes (or neurons). The second (and last) layer is a 10-node softmax layer —this
+## returns an array of 10 probability scores that sum to 1. Each node contains a score that
+## indicates the probability that the current image belongs to one of the 10 digit classes.
+##
+### Compile the model
+##
+## Before the model is ready for training, it needs a few more settings. These are added
+## during the model’s compile step:
+## > Loss function — This measures how accurate the model is during training. We want to
+##                   minimize this function to “steer” the model in the right direction.
+## > Optimizer     — This is how the model is updated based on the data it sees and its loss
+##                   function.
+## > Metrics       — Used to monitor the training and testing steps. The following example
+##                   uses accuracy, the fraction of the images that are correctly classified.
+##
+model %>%
+    compile(
+        optimizer = 'adam', 
+        loss = 'sparse_categorical_crossentropy',
+         metrics = c('accuracy')
+    )
+##
+### Train the model
+##
+## Training the neural network model requires the following steps:
+## > Feed the training data to the model — in this example, the train_images and train_labels
+##                                         arrays.
+## > The model learns to associate images and labels.
+## > We ask the model to make predictions about a test set — in this example, the test_images
+##                                                           array.
+## We verify that the predictions match the labels from the test_labels array.
+##
+## To start training, call the fit method — the model is “fit” to the training data:
+history <- model %>%
+    fit(
+        x=train_images,
+        y=train_labels,
+        epochs = 25L
+    )
+plot(history)
+## history2 <- model %>%
+##     fit(
+##         x=train_images,
+##         y=train_labels,
+##         epochs = 25L
+##     )
+## plot(history2)
+##
+## As the model trains, the loss and accuracy metrics are displayed. This model reaches an
+## accuracy of about 0.88 (or 88%) on the training data.
+##
+### Evaluate accuracy
+##
+## Next, compare how the model performs on the test dataset:
+{
+    score <- model %>% evaluate(x=test_images, y=test_labels)
+    cat('Test loss:', score$loss, "\n")
+    cat('Test accuracy:', score$acc, "\n")
+}
+##
+### Make predictions
+##
+## With the model trained, we can use it to make predictions about some images.
+predictions <- model %>% predict(x=test_images)
+##
+## Here, the model has predicted the label for each image in the testing set.
+## Let’s take a look at the first prediction:
+predictions[1L,]
+##
+## A prediction is an array of 10 numbers. These describe the “confidence” of the
+## model that the image corresponds to each of the 10 different articles of clothing.
+## We can see which label has the highest confidence value:
+which.max(predictions[1L,])
+##
+## Alternatively, we can also directly get the class prediction:
+class_pred <- model %>% predict_classes(x=test_images)
+class_pred[1L:20L]
+##
+## As the labels are 0-based, this actually means a predicted label of 9 (to be found
+## in class_names[9]). So the model is most confident that this image is an ankle boot.
+## And we can check the test label to see this is correct:
+test_labels[1L]
+##
+{
+    c(n,m) %<-% c(16L,16L)
+    ## X11()
+    ## par(mar=c(0,0,0,0))
+    from <- 1L
+    while(from < dim(test_images)[1L]) {
+        png(filename=sprintf("../../Image/PRED Fashion MNIST_%05d.pdf", from),width=1200,height=800)
+        par(mar=c(0,0,0,0))
+        plot_tile(x=test_images,y=test_labels,y_pred=class_pred,n=n,m=m,from=from)
+        ## dev.copy2pdf(file=sprintf("../../Image/PRED Fashion MNIST_%05d.pdf", from))
+        dev.off()
+        from <- from + n*m
+    }
+    rm(n,m,from)
+    ## dev.off()
+}
+##
+## Let’s plot several images with their predictions. Correct prediction labels are green and
+## incorrect prediction labels are red.
+par(mfcol=c(5,5))
+par(mar=c(0, 0, 1.5, 0), xaxs='i', yaxs='i')
+for (i in 1L:25L) { 
+    img <- test_images[i, , ]
+    img <- t(apply(img, 2, rev)) 
+    ## subtract 1 as labels go from 0 to 9
+    predicted_label <- which.max(predictions[i, ]) - 1
+    true_label <- test_labels[i]
+    if (predicted_label == true_label) {
+        color <- '#008800' 
+    } else {
+        color <- '#bb0000'
+    }
+    image(1:28, 1:28, img, col = gray((0:255)/255), xaxt = 'n', yaxt = 'n',
+          main = paste0(class_names[predicted_label + 1], " (",
+                        class_names[true_label + 1], ")"),
+          col.main = color)
+}
+##
+## Finally, use the trained model to make a prediction about a single image.
+##
+## Grab an image from the test dataset
+## take care to keep the batch dimension, as this is expected by the model
+img <- test_images[1L,,,drop = FALSE]
+dim(img)
+##
+predictions <- model %>% predict(img)
+predictions
+##
+## predict returns a list of lists, one for each image in the batch of data.
+## Grab the predictions for our (only) image in the batch:
+## subtract 1 as labels are 0-based
+which.max(predictions)-1L
+##
+## Or, directly getting the class prediction again:
+class_pred <- model %>% predict_classes(img)
+class_pred
+##
+## And, as before, the model predicts a label of 9.
+##
+### Take too much place, can be reloaded and reprocess if need be.
+rm(fashion_mnist,train_images, train_labels,test_images, test_labels)
+##
+### To reload/reprocess
+if(FALSE) {
+    load(file="../../Data/fashion_mnist.rda")
+    c(train_images, train_labels) %<-% fashion_mnist$train
+    c(test_images, test_labels) %<-% fashion_mnist$test
+    train_images <- train_images / 255
+    test_images <- test_images / 255
+}
+##

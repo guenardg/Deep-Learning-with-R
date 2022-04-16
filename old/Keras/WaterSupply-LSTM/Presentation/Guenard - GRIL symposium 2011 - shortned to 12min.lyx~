@@ -1,0 +1,2693 @@
+#LyX 1.6.7 created this file. For more info see http://www.lyx.org/
+\lyxformat 345
+\begin_document
+\begin_header
+\textclass beamer
+\begin_preamble
+\usetheme{Frankfurt}
+\usecolortheme{rose}
+
+\setbeamercovered{transparent}
+% or whatever (possibly just delete it)
+\end_preamble
+\use_default_options false
+\language english
+\inputencoding auto
+\font_roman times
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_amsmath 2
+\use_esint 0
+\cite_engine basic
+\use_bibtopic false
+\paperorientation portrait
+\secnumdepth 2
+\tocdepth 2
+\paragraph_separation indent
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\author "" 
+\author "" 
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Predicting tolerance to pesticides using species phylogeny and compound
+ properties
+\begin_inset OptArg
+status collapsed
+
+\begin_layout Plain Layout
+Predicting species tolerance
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Author
+Guillaume Guénard
+\begin_inset Flex InstituteMark
+status collapsed
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+and
+\end_layout
+
+\end_inset
+
+ Steven C.
+\begin_inset space ~
+\end_inset
+
+Walker
+\begin_inset Flex InstituteMark
+status collapsed
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+and
+\end_layout
+
+\end_inset
+
+ Peter C.
+ Von der Ohe
+\begin_inset Flex InstituteMark
+status collapsed
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+and
+\end_layout
+
+\end_inset
+
+ Pierre Legendre
+\begin_inset Flex InstituteMark
+status collapsed
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset OptArg
+status collapsed
+
+\begin_layout Plain Layout
+Guénard, Walker, Von der Ohe, and Legendre
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Institute
+\begin_inset Flex InstituteMark
+status collapsed
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+
+Département des sciences biologiques
+\begin_inset Newline newline
+\end_inset
+
+Université de Montréal 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+and
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Flex InstituteMark
+status collapsed
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+
+Department of Effect-Directed analysis
+\begin_inset Newline newline
+\end_inset
+
+Helmholtz-Zentrum für Umweltforschung (UFZ)
+\begin_inset OptArg
+status collapsed
+
+\begin_layout Plain Layout
+Université de Montréal and UFZ
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Date
+21 Symposium du GRIL, 2011
+\begin_inset OptArg
+status collapsed
+
+\begin_layout Plain Layout
+GRIL 2011
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+%
+\backslash
+pgfdeclareimage[height=1.0cm]{UdeM}{/home/guenardg/Documents/PPhD/Presentations/i
+mages/Universite_de_Montreal.eps}
+\end_layout
+
+\begin_layout Plain Layout
+
+%
+\backslash
+logo{
+\backslash
+pgfuseimage{UdeM}}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+AtBeginSubsection[]{
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+frame<beamer>{ 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+frametitle{CONTENT}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+tableofcontents[currentsection,currentsubsection] 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+  }
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+beamerdefaultoverlayspecification{<+->}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout BeginFrame
+CONTENT
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout Section
+Background
+\end_layout
+
+\begin_layout Subsection
+Tolerance: the outcome species and compounds characteristics
+\begin_inset OptArg
+status collapsed
+
+\begin_layout Plain Layout
+Definition
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout BeginFrame
+TOLERANCE
+\end_layout
+
+\begin_layout Itemize
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<1->
+\end_layout
+
+\end_inset
+
+The concentration of a substance to observe an effect after a given amount
+ of time
+\end_layout
+
+\begin_layout Itemize
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<2->
+\end_layout
+
+\end_inset
+
+Useful yet costly to estimate:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+there are many chemical compounds reaching ecosystems and
+\end_layout
+
+\begin_layout Enumerate
+many species inhabiting ecosystems
+\end_layout
+
+\end_deeper
+\begin_layout Block
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<3->
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\end_inset
+
+Challenge
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Block
+To obtain information for sufficient numbers of species and compounds
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout BeginFrame
+A CLOSER LOOK
+\end_layout
+
+\begin_layout Itemize
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<1->
+\end_layout
+
+\end_inset
+
+Tolerance of a given species: depends on its physiological/biochemical character
+istics
+\end_layout
+
+\begin_layout Itemize
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<2->
+\end_layout
+
+\end_inset
+
+The effects of a compound: depends on its chemical properties
+\end_layout
+
+\begin_layout Itemize
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<3->
+\end_layout
+
+\end_inset
+
+Multiple (species — compound) tolerance: depends on species characteristics
+ interacting with the compound's chemical properties
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout Subsection
+Objective
+\end_layout
+
+\begin_layout BeginFrame
+OBJECTIVE
+\end_layout
+
+\begin_layout Block
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<1->
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\end_inset
+
+Purpose
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Block
+To demonstrate how to combine information about 1) the phylogenetic signals
+ of species traits 
+\bar under
+and
+\bar default
+ 2) properties of chemical compounds to estimate phylogenetic patterns of
+ species tolerance.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<2->
+\end_layout
+
+\end_inset
+
+Type of compound: pesticides — designed to have selective toxicity
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout Section
+Integrating two modeling approaches
+\begin_inset OptArg
+status collapsed
+
+\begin_layout Plain Layout
+Modeling approaches
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Phylogeny to predict trait values
+\begin_inset OptArg
+status collapsed
+
+\begin_layout Plain Layout
+Phylogeny
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout BeginFrame
+PHYLOGENETIC SIGNAL
+\end_layout
+
+\begin_layout Itemize
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<1->
+\end_layout
+
+\end_inset
+
+Species traits reflect the evolutionary processes that shaped them
+\end_layout
+
+\begin_layout Itemize
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<2->
+\end_layout
+
+\end_inset
+
+The resulting phylogenetic signals can be represented mathematically (e.g.
+ using eigenfunctions)
+\end_layout
+
+\begin_layout Itemize
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<3->
+\end_layout
+
+\end_inset
+
+Trait values for additional species can be predicted from this representation
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout BeginFrame
+REPRESENTING THE SIGNAL
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename Example-Decomp.eps
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula $E(trait)=b_{0}+b_{1}\mathbf{u}_{1}+b_{2}\mathbf{u}_{2}+...+b_{j}\mathbf{u}_{j}+...$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Eigenfunctions used to represent a phylogenetic signal (marker's size: absolute
+ value, color: sign)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout BeginFrame
+PREDICTION FOR NEW SPECIES
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename Example-Interp.eps
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula $trait_{x}=b_{0}+b_{1}s_{x,1}+b_{2}s_{x,2}+...+b_{j}s_{x,j}+...$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Prediction of trait value for new species (marker's size: absolute value,
+ color: sign)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout BeginFrame
+MULTIPLE COMPOUNDS
+\end_layout
+
+\begin_layout Block
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<1->
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\end_inset
+
+Question
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+ How to integrate information about pesticides (i.e.
+ their chemical properties) in models?
+\end_layout
+
+\begin_layout ExampleBlock
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<2->
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\end_inset
+
+Solution
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+ Use phylogenetic eigenfunctions within a bilinear model
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout Subsection
+Bilinear model
+\end_layout
+
+\begin_layout BeginFrame
+TWO TYPES OF EXPLANATORY VARIABLES
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename Figure 1-version2.pdf
+	scale 45
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Matrices involved in a bilinear model: response (
+\begin_inset Formula $\mathbf{Y}$
+\end_inset
+
+), explanatory (
+\begin_inset Formula $\mathbf{X}$
+\end_inset
+
+ and 
+\begin_inset Formula $\mathbf{Z}$
+\end_inset
+
+), and coefficient 
+\begin_inset Formula $\mathbf{C}$
+\end_inset
+
+ matrices
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout BeginFrame
+PHYLOGENY AND CHEMICAL PROPERTIES
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename Figure 1-version2-LC50.eps
+	scale 45
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Bilinear model of tolerance to several compounds (
+\begin_inset Formula $\mathbf{T}$
+\end_inset
+
+) as a function of phylogeny (
+\begin_inset Formula $\mathbf{U}$
+\end_inset
+
+: eigenfunction loadings) and properties (
+\begin_inset Formula $\mathbf{Z}$
+\end_inset
+
+)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout Section
+Application
+\end_layout
+
+\begin_layout Subsection
+Dataset
+\end_layout
+
+\begin_layout BeginFrame
+THE RESPONSE VARIABLE
+\end_layout
+
+\begin_layout Itemize
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<1->
+\end_layout
+
+\end_inset
+
+Database (
+\begin_inset Formula $8848$
+\end_inset
+
+ records: 
+\begin_inset Formula $759$
+\end_inset
+
+ species, 
+\begin_inset Formula $1731$
+\end_inset
+
+ compounds involved in 
+\begin_inset Formula $7170$
+\end_inset
+
+ combinations; de Zwart et al.
+ 2002)
+\end_layout
+
+\begin_layout Itemize
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<2->
+\end_layout
+
+\end_inset
+
+Endpoint: median lethal concentration after 
+\begin_inset Formula $96$
+\end_inset
+
+ hours (
+\begin_inset Formula $4$
+\end_inset
+
+ days)
+\end_layout
+
+\begin_layout Itemize
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<3->
+\end_layout
+
+\end_inset
+
+Selected 
+\begin_inset Formula $6$
+\end_inset
+
+ pesticides (each with 
+\begin_inset Formula $1$
+\end_inset
+
+ of 
+\begin_inset Formula $2$
+\end_inset
+
+ modes of toxic action) — tolerance available for 
+\begin_inset Formula $12$
+\end_inset
+
+ species (i.e.
+ 
+\begin_inset Formula $72$
+\end_inset
+
+ observations)
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout BeginFrame
+THE ORGANISMS
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $12$
+\end_inset
+
+ species: 
+\begin_inset Formula $10$
+\end_inset
+
+ fish, 
+\begin_inset Formula $2$
+\end_inset
+
+ arthropods
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename Phylogeny-bilinear.eps
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Maximum-likelihood tree obtain from mitochonrial and nuclear rRNA sequences
+ (from GenBank, alignment: MUSCLE)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout BeginFrame
+THE PESTICIDES
+\end_layout
+
+\begin_layout ColumnsCenterAligned
+
+\end_layout
+
+\begin_deeper
+\begin_layout Column
+6cm
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Pesticides and the two properties used as explanatory variables (AChE-I
+ coded as 
+\begin_inset Formula $+1$
+\end_inset
+
+ and Narcosis coded as 
+\begin_inset Formula $-1$
+\end_inset
+
+)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Tabular
+<lyxtabular version="3" rows="7" columns="3">
+<features>
+<column alignment="center" valignment="middle" width="2cm">
+<column alignment="center" valignment="middle" width="1.5cm">
+<column alignment="center" valignment="middle" width="1.25cm">
+<row>
+<cell alignment="center" valignment="middle" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Name
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="middle" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Mode of action
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="middle" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\log k_{ow}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="center" valignment="middle" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Carbaryl
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="middle" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+AChE-I
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="middle" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.36$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="middle" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Malathion
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="middle" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+AChE-I
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="middle" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.75$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="middle" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Parathion
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="middle" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+AChE-I
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="middle" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $3.83$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="middle" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Toxaphene
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="middle" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Narcosis
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="middle" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $3.30$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="middle" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Lindane
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="middle" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Narcosis
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="middle" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $3.69$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="middle" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Dieldrin
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="middle" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Narcosis
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="middle" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $3.70$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Column
+2cm
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+Carbaryl
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Graphics
+	filename Carbaryl.png
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Malathion
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Graphics
+	filename Malathion.png
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Parathion
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Graphics
+	filename Parathion.png
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Column
+2cm
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+Toxaphene
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Graphics
+	filename Toxaphene.png
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Lindane
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Graphics
+	filename Lindane.png
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Dieldrin
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Graphics
+	filename Dieldrin.png
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout Subsection
+Results
+\end_layout
+
+\begin_layout BeginFrame
+COEFFICIENTS
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Model coefficients (
+\begin_inset Formula $\mathbf{C}$
+\end_inset
+
+) after backward elimination (AICc) with 
+\begin_inset Formula $F$
+\end_inset
+
+ tests for both rows and columns
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Tabular
+<lyxtabular version="3" rows="9" columns="5">
+<features>
+<column alignment="center" valignment="middle" width="1.25cm">
+<column alignment="center" valignment="middle" width="1.25cm">
+<column alignment="center" valignment="middle" width="1.5cm">
+<column alignment="center" valignment="middle" width="1.25cm">
+<column alignment="center" valignment="middle" width="2cm">
+<row>
+<cell alignment="center" valignment="middle" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="middle" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Intercept
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="middle" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Mode of action
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="middle" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\log k_{ow}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $F_{\upsilon_{1},55}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Intercept
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.457$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.744$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-0.307$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $117.83^{***}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mathbf{u}_{1}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-3.324$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-1.122$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.600$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $32.00^{***}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mathbf{u}_{2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.526$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.782$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.167$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $4.789^{*}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mathbf{u}_{3}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.903$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-0.595$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $ $
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $4.035$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mathbf{u}_{5}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-0.771$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $ $
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.434$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $23.59^{***}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mathbf{u}_{7}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-1.307$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $ $
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.287$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $10.32^{*}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mathbf{u}_{11}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-1.166$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $ $
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.390$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $19.03^{***}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $F_{\upsilon_{1},55}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $30.00^{***}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $8.451^{***}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $20.32^{***}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $19.83^{***}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout BeginFrame
+MODEL OUTPUT
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename PhylogeneticQSAR - Stripped.eps
+	scale 32
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset Formula $LC_{50}$
+\end_inset
+
+ values observed (circle) or fitted (square) by the phylogenetic bilinear
+ model (
+\begin_inset Formula $R_{adj}^{2}=0.69$
+\end_inset
+
+)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout BeginFrame
+QUALITY OF FIT
+\end_layout
+
+\begin_layout Block
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<1->
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\end_inset
+
+Deviation factor
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+ the number of times a fitted or predicted tolerance is higher (positive
+ values) or lower (negative values) than the observation.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Absolute deviation factor by pesticide (range and median)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Tabular
+<lyxtabular version="3" rows="7" columns="4">
+<features>
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Compound
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+min
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+med
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+max
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Carbaryl
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.33$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.88$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $14.8$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Malathion
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.14$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.64$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $17.1$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Parathion
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.01$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.77$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $4.88$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Toxaphene
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.21$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.52$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $12.0$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Lindane
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.99$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $3.85$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $13.0$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Dieldrin
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.24$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $3.05$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $16.9$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout Section
+Conclusion
+\end_layout
+
+\begin_layout Subsection*
+Summary
+\end_layout
+
+\begin_layout BeginFrame
+SUMMARY
+\end_layout
+
+\begin_layout Block
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+<1->
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\end_inset
+
+Conclusion
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+ By combining phylogenetic trait signals with chemical properties in a bilinear
+ model, we can estimate species tolerance to chemical compounds like pesticides.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<2->
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $89\%$
+\end_inset
+
+ of estimates are within a factor of 
+\begin_inset Formula $10$
+\end_inset
+
+ from the observations
+\end_layout
+
+\begin_layout Itemize
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<3->
+\end_layout
+
+\end_inset
+
+Similar to variation among experimental studies (and the uncertainty within
+ them)
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout Subsection*
+Acknowledgements
+\end_layout
+
+\begin_layout BeginFrame
+ACKNOWLEDGEMENTS
+\end_layout
+
+\begin_layout Itemize
+Dick de Zwart — National institute of public health and the environment
+ (RIVM), The Netherlands, provided access to database
+\end_layout
+
+\begin_layout Itemize
+Deutsche Forschungsgesellschaft (DFG – Germany) fellowship (PAK 406/1) —
+ Peter Von der Ohe
+\end_layout
+
+\begin_layout Itemize
+FQRNT postdoctoral fellowship — Guillaume Guénard
+\end_layout
+
+\begin_layout Itemize
+NSERC grants no.
+ 7738-07 — Pierre Legendre
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\end_body
+\end_document

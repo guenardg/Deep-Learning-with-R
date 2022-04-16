@@ -1,0 +1,9 @@
+From: https://tensorflow.rstudio.com/keras/
+
+[Tutorials]
+GettingStarted: https://tensorflow.rstudio.com/keras/
+BasicClass: https://tensorflow.rstudio.com/keras/articles/tutorial_basic_classification.html
+BasicTextClass: https://tensorflow.rstudio.com/keras/articles/tutorial_basic_text_classification.html
+BasicRegression: https://tensorflow.rstudio.com/keras/articles/tutorial_basic_regression.html
+OverUnderFitting: https://tensorflow.rstudio.com/keras/articles/tutorial_overfit_underfit.html
+SaveRestoreModel: https://tensorflow.rstudio.com/keras/articles/tutorial_save_and_restore.html
